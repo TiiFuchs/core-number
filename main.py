@@ -7,17 +7,17 @@ def letter_to_number(letter: str) -> int:
 
 def number_to_letter(number: int) -> str:
     if not isinstance(number, int) or isinstance(number, bool):
-        raise ValueError("Die Zahl muss eine ganze Zahl zwischen 1 und 26 sein.")
+        raise ValueError("The number must be an integer between 1 and 26.")
 
     if number < 1 or number > 26:
-        raise ValueError("Die Zahl muss zwischen 1 und 26 liegen.")
+        raise ValueError("The number must be between 1 and 26.")
 
     return chr(ord("A") + number - 1)
 
 
 def calculate_core_number(numbers):
     if len(numbers) != 4:
-        raise ValueError("Es werden genau vier Zahlen benötigt.")
+        raise ValueError("Exactly four numbers are required.")
 
     valid_results = []
 
@@ -43,14 +43,14 @@ def calculate_core_number(numbers):
             valid_results.append((rounded, ops))
 
     if not valid_results:
-        raise ValueError("Es konnte keine Core Number mit der Eingabe gefunden werden.")
+        raise ValueError("No core number could be found for the input.")
 
     positive = [r for r in valid_results if r[0] > 0]
     if positive:
         best = min(positive, key=lambda x: x[0])
         return best[0], best[1]
 
-    raise ValueError("Es konnte keine Core Number mit der Eingabe gefunden werden.")
+    raise ValueError("No core number could be found for the input.")
 
 
 def format_expression(numbers, operators):
@@ -94,7 +94,7 @@ def process_number(digit_string):
 
     partitions = generate_partitions(digit_string)
     if not partitions:
-        raise ValueError("Ungültige Eingabe: Es werden mindestens 4 Ziffern benötigt.")
+        raise ValueError("Invalid input: at least 4 digits are required.")
 
     best_core = None
     best_partition = None
@@ -111,7 +111,7 @@ def process_number(digit_string):
             continue
 
     if best_core is None:
-        raise ValueError("Es konnte keine Core Number mit der Eingabe gefunden werden.")
+        raise ValueError("No core number could be found for the input.")
 
     return best_core, best_partition, best_ops
 
@@ -121,10 +121,10 @@ def process_word(word):
     word = word.upper()
 
     if len(word) != 4:
-        raise ValueError("Bitte exakt 4 Buchstaben eingeben.")
+        raise ValueError("Please enter exactly 4 letters.")
 
     if not word.isalpha() or not word.isascii():
-        raise ValueError("Bitte nur Buchstaben A-Z ohne Sonderzeichen eingeben.")
+        raise ValueError("Please enter only letters A-Z without special characters.")
 
     numbers = [letter_to_number(letter) for letter in word[:4]]
     core_number, ops = calculate_core_number(numbers)
@@ -132,36 +132,36 @@ def process_word(word):
 
 
 def main():
-    user_input = input("Wort oder Zahl (mind. 4 Zeichen): ").strip()
+    user_input = input("Word or number (at least 4 characters): ").strip()
 
     if not user_input:
-        print("Bitte geben Sie etwas ein.")
+        print("Please enter a value.")
         return
 
     try:
         if user_input.isdigit():
             # Input is a number
             if len(user_input) < 4:
-                print("Bitte mindestens 4 Ziffern eingeben.")
+                print("Please enter at least 4 digits.")
                 return
 
             core_number, numbers, ops = process_number(user_input)
-            print(f"Zahlen: {numbers}")
+            print(f"Numbers: {numbers}")
             expression = format_expression(numbers, ops)
-            print(f"Ausdruck: {expression}")
+            print(f"Expression: {expression}")
             print(f"Core number: {core_number}")
         else:
             # Input is a word
             core_number, numbers, ops = process_word(user_input)
-            print(f"Zahlen: {numbers}")
+            print(f"Numbers: {numbers}")
             expression = format_expression(numbers, ops)
-            print(f"Ausdruck: {expression}")
+            print(f"Expression: {expression}")
             print(f"Core number: {core_number}")
             if core_number > 0 and core_number < 27:
                 letter = number_to_letter(core_number)
                 print(f"Letter: {letter}")
     except ValueError as e:
-        print(f"Fehler: {e}")
+        print(f"Error: {e}")
 
 
 if __name__ == "__main__":

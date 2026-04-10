@@ -85,8 +85,8 @@ Input:
 Output:
 
 ```text
-Wort oder Zahl (mind. 4 Zeichen): Zahlen: [8, 6, 45, 5]
-Ausdruck: + 8 - 6 x 45 : 5
+Word or number (at least 4 characters): Numbers: [8, 6, 45, 5]
+Expression: + 8 - 6 x 45 : 5
 Core number: 18
 ```
 
@@ -101,8 +101,8 @@ Input:
 Output:
 
 ```text
-Wort oder Zahl (mind. 4 Zeichen): Zahlen: [8, 6, 4, 5]
-Ausdruck: + 8 x 6 : 4 - 5
+Word or number (at least 4 characters): Numbers: [8, 6, 4, 5]
+Expression: + 8 x 6 : 4 - 5
 Core number: 7
 ```
 
@@ -117,8 +117,8 @@ BABA
 Output:
 
 ```text
-Wort oder Zahl (mind. 4 Zeichen): Zahlen: [2, 1, 2, 1]
-Ausdruck: + 2 - 1 x 2 : 1
+Word or number (at least 4 characters): Numbers: [2, 1, 2, 1]
+Expression: + 2 - 1 x 2 : 1
 Core number: 2
 Letter: B
 ```
